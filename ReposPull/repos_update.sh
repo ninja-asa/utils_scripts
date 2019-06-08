@@ -21,6 +21,7 @@ for repos in */ ; do
     cd $repos
     echo -e "${YE}Updating $repos${NC}" 
     git up
+    for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
     cd ..
 done
 exec bash --login
